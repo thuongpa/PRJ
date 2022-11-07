@@ -12,6 +12,10 @@
         <servlet-name>takeatt</servlet-name>
         <servlet-class>Attendance.AttController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>report</servlet-name>
+        <servlet-class>Report.ReportController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>timetable</servlet-name>
         <url-pattern>/lecture/timetable</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>takeatt</servlet-name>
         <url-pattern>/lecture/takeatt</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>report</servlet-name>
+        <url-pattern>/lecture/report</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

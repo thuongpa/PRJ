@@ -20,6 +20,7 @@ import model.Student;
 import model.Subject;
 import model.TimeSlot;
 
+
 /**
  *
  * @author Ngo Tung Son
@@ -99,8 +100,8 @@ public class SessionDBContext extends dal.DBContext<Session> {
     }
 
     @Override
-  public void update(Session model) {
-        try {
+    public void update(Session model) {
+         try {
             connection.setAutoCommit(false);
             String sql = "UPDATE [Session] SET attanded = 1 WHERE sesid = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
@@ -149,9 +150,7 @@ public class SessionDBContext extends dal.DBContext<Session> {
                 Logger.getLogger(SessionDBContext.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
     }
-
 
     @Override
     public void delete(Session model) {
@@ -159,8 +158,8 @@ public class SessionDBContext extends dal.DBContext<Session> {
     }
 
     @Override
-   public Session get(int id) {
-        try {
+    public Session get(int id) {
+       try {
             String sql = "SELECT ses.sesid,ses.[index],ses.date,ses.attanded\n"
                     + "	,g.gid,g.gname\n"
                     + "	,r.rid,r.rname\n"
@@ -238,5 +237,42 @@ public class SessionDBContext extends dal.DBContext<Session> {
     public ArrayList<Session> list() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    public int getTotalSlotByGid(int gid){
+        try {
+            String sql = "Select COUNT(*) as total from Session where gid = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, gid);
+            ResultSet rs = stm.executeQuery();
+            int count = 0;
+            while (rs.next()) {
+                count = rs.getInt("total");
+            }
+            return count;
+        } catch (SQLException ex) {
+            Logger.getLogger(SessionDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+    
+    public ArrayList<Session> listByGid(int gid){
+        ArrayList<Session> sess = null;
+        try {
+            String sql = "Select sesid FROM [Session] where gid=?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, gid);
+            ResultSet rs = stm.executeQuery();
+            if (rs != null) {
+                sess = new ArrayList<>();
 
+                while (rs.next()) {
+                    Session s = new Session();
+                    s.setId(rs.getInt("sesid"));
+                    sess.add(s);
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SessionDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sess;
+    }
 }
