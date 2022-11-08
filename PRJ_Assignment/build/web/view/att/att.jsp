@@ -21,7 +21,7 @@
             <span style="margin-left: 16px">Home | View Schedule</span>
         </div>
         <div align="center">
-        Take attendance for Group: ${requestScope.ses.group.name} <br/>
+            Take attendance for Group: ${requestScope.ses.group.name} <a href="../lecture/report?gid=${requestScope.ses.group.id}"> See report </a><br/>
         Subject: ${requestScope.ses.group.subject.name} <br/>
         Room: ${requestScope.ses.room.name} <br/>
         Date: ${requestScope.ses.date} - ${requestScope.ses.slot.description}<br/>

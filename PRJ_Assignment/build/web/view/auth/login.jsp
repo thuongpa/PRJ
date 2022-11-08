@@ -1,13 +1,10 @@
-<%-- 
-    Document   : login
-    Created on : Oct 17, 2022, 3:08:08 PM
-    Author     : sonnt
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="../css/loginstyle.css" rel="stylesheet" type="text/css"/>
         <script>
             function validLogin() {
                 if (document.form.username.value == "") {
@@ -26,10 +23,30 @@
         </script>
     </head>
     <body>
-        <form name="form" onsubmit="validLogin()" action="login" method="POST">
-            Username: <input type="text" name="username" /> <br/>
-            Password: <input type="password" name="password" /> <br/>
-            <input type="submit" value="Login"/>
-        </form>
+        <main>
+            <div class="container">
+                <div class="login-form">               
+                    <form name="form" onsubmit="validLogin()" action="login" method="POST"> 
+                        <h1>Login</h1>
+                        <div class="input-box">
+                            <i ></i>
+                            <input type="text" name="username" placeholder="Username">
+                        </div>
+                        <div class="input-box">
+                            <i ></i>
+                            <input type="password" name="password" placeholder="Password">
+                        </div>
+
+                        <div class="btn-box">
+                            <button type="submit">
+                                Login
+                            </button>
+                        </div>
+                        <br/>
+
+                    </form>
+                </div>
+            </div>
+        </main>     
     </body>
 </html>
