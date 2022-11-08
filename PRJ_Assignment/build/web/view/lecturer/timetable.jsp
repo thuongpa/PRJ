@@ -2,11 +2,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:useBean id="helper" class="util.DateTimeHelper"/>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="util.DateTimeHelper" %>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <script>
+            function validDate() {
+                 var from = new Date(document.getElementById("date_from").value);
+                 var to = new Date(document.getElementById("date_to").value);
+                 if(from > to){
+                      alert("Please enter From before To");
+                 }
+            }
+        </script>
     </head>
     <body>
         <div>
@@ -23,11 +31,12 @@
         <div align="center">
             <h2>Timetable</h2>
         Lecturer: <input type="text" readonly="readonly" value="${requestScope.lecturer.name}"/>
-        <form action="timetable" method="POST">
+        <form name="form" onsubmit="validDate()" action="timetable" method="POST">
             <input type="hidden" name="lid" value="${param.lid}"/>
-            From: <input type="date" name="from" value="${requestScope.from}"/>
-            To: <input type="date" name="to" value="${requestScope.to}"/>
-            <input type="submit" value="View"/> 
+            From: <input type="date" id="date_from" name="from" value="${requestScope.from}"/>
+            To: <input type="date" id="date_to" name="to" value="${requestScope.to}"/>
+            <input type="submit" value="View"/>
+            
         </form>
         <table align="center" style="width: 100%" border="1px">
              <thead style="background: #6b90da; box-shadow: 0px 2px #f5f5f5" align="center">

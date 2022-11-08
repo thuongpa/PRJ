@@ -8,11 +8,25 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <script>
+            function validLogin() {
+                if (document.form.username.value == "") {
+                    alert("Please enter Login Name.");
+                    document.loginform.userName.focus();
+                    return;
+                }
+                if (document.form.password.value == "") {
+                    alert("Please enter password.");
+                    document.userform.password.focus();
+                    return;
+                }
+                alert("Welcome User");
+                return;
+            }
+        </script>
     </head>
     <body>
-        <form action="login" method="POST">
+        <form name="form" onsubmit="validLogin()" action="login" method="POST">
             Username: <input type="text" name="username" /> <br/>
             Password: <input type="password" name="password" /> <br/>
             <input type="submit" value="Login"/>

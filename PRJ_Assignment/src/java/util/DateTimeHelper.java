@@ -96,7 +96,6 @@ public class DateTimeHelper {
        
         Date e_a = toDateUtil(a);
         Date e_b = toDateUtil(b);
-         System.out.println(a + " " + b +" " +e_a.compareTo(e_b));
         return e_a.compareTo(e_b);
     }
      
