@@ -6,7 +6,7 @@
 <%@ page import="model.Session" %>
 <%@ page import="model.Attandance" %>
 <%@ page import="dal.AttandanceDBContext" %>
-
+<%@ page import="pageNumber.*, java.util.*, java.io.*" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -40,13 +40,19 @@
             if(request.getAttribute("studentList") != null){
                 ArrayList<Student> students = new ArrayList<Student>();
                 students = (ArrayList<Student>)request.getAttribute("studentList");
+                Map<Integer, Double> map = (Map<Integer, Double>)request.getAttribute("map");
                 for(Student s :students){
         %>
 
         <tr>
             <td><%=s.getName()%></td>
-            <td>0%</td>
-            <%
+            <% for (Map.Entry<Integer, Double> m : map.entrySet()) {
+                        if(m.getKey() == s.getId()){
+                    %>
+                    <td><%=m.getValue()%>%</td>
+
+                    <%      }
+                        }
                 if(request.getAttribute("sessionList") != null){
                     AttandanceDBContext attDB = new AttandanceDBContext();
                     ArrayList<Session> sessionList = new ArrayList<Session>();
